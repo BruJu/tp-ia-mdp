@@ -35,9 +35,9 @@ il risque de perdre 10 si il arrive dans un état absorbant, il vaut mieux
 viser une récompense dix fois plus grande pour deux fois plus de risque qui sera
 en moyenne bien supérieure)
 
-Le seul moyen de prendre le chemin risqué en s'arrétant à 1 est donc de vouloir
-minimiser le temps passé dans la grille, d'où une pénalité forte à chaque
-mouvement.
+Le moyen que nous avons trouver faire prendre le chemin risqué en s'arrétant à
+1 est de vouloir minimiser le temps passé dans la grille, d'où une pénalité forte
+à chaque mouvement.
 
 
 - Chemin risqué pour atteindre +10
@@ -51,7 +51,8 @@ Même justification que la question 5.1.
 `gamma = 0.3`
 
 L'agent prend par défaut le chemin sûr pour rejoindre 10. Pour le faire rejoindre
-1, on réduit gamma pour qu'il veuille sortir le plus vite possible du labyrinthe.
+1, on réduit gamma pour qu'il veuille sortir le plus vite possible du labyrinthe
+en minimisant la valeur des gains qu'il peut acquérir dans le futur.
 En particulier, dans les cases sur la partie en haut du plateau et centrée
 horizontalement, la case de droite doit avoir une valeur inférieure à la case
 du dessous. Cela est obtenu en minimisant la propagation de la récompense de 10.
@@ -60,11 +61,11 @@ du dessous. Cela est obtenu en minimisant la propagation de la récompense de 10
 
 `rother = 1.1` (gamma = 0.9, bruit = 0.2)
 
-En appliquant un rOther supérieur ou égal à 1.1, la récompense directe de l'agent
-est plus que celle qu'il aurait en atteignant un état final avec un gain positif.
-L'agent a donc intérêt à poursuivre sa route, donc à ce que ses actions le
-récompensent plus que l'espérance de gain qu'il peut avoir en finissant la
-simulation.
+En appliquant un rOther supérieur ou égal à 1.1, la somme des récompenses en se
+déplacement de l'agent est plus importante que celle qu'il estime obtenir en
+en atteignant un état final avec un gain positif. L'agent a donc intérêt à
+poursuivre sa route, donc à ce que ses actions le récompensent plus que
+l'espérance de gain qu'il peut avoir en finissant la simulation.
 
 
 # Rapport TP2
@@ -109,5 +110,3 @@ beaucoup l'apprentissage). Le pacman devrait favoriser les états le rapprochant
 Nous avons également rajouté la distance avec le plus proche fantôme (dans les mêmes conditions que le plus proche
 pac dot) afin que si il n'y ait pas de fantome trop éloigné, le pacman ait une idée de si il s'éloigne ou se
 rapproche d'un fantome lointain.
-
-
